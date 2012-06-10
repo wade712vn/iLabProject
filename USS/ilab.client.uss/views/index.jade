@@ -1,0 +1,47 @@
+extends layout
+
+append head
+  script(type='text/javascript', src='/javascripts/jquery-1.7.2.min.js')
+  script(type='text/javascript', src='/javascripts/jquery-ui-1.8.20.custom.min.js')
+  script 
+    $(document).ready(function() {
+      $.each($(".group"), function(index, li) {
+        $(li).click(function() {
+          
+          $(".group").removeClass("selected");
+          $(li).addClass("selected");
+        })
+      });
+    });
+
+append content
+  div#labs
+    p(style="margin-left: 10px") Select a group you would like to make reservation as a member of
+    ul(style="width: 270px")
+      li(class="header")
+        span(class="title") Group name
+        span(class="uss") Group ID
+
+      - each group in groups
+        li(class="group")
+          span(class="title") #{group.title}
+          span(class="uss") #{group.group_id}
+            
+          ul(class="labs")
+            li(class="header")
+              span(class="title") Lab name   
+              span(class="uss") USS
+              span(class="id") Lab ID
+            
+            - each lab in group.labs
+              li(class="lab")
+                span(class="title") #{lab.title}
+                span(class="uss") #{lab.uss_id}
+                span(class="id") #{lab.lab_id}
+                span
+                  - var href = "/make-reservation/" + lab.lab_id + "?group=" + group.group_id; 
+                  a(href=href) Make Reservation
+
+    
+    
+

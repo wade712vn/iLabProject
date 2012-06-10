@@ -1,0 +1,76 @@
+extends layout
+
+append head
+  title= title
+  link(rel='stylesheet', type='text/css', href='/stylesheets/fullcalendar2.css')
+  link(rel='stylesheet', type='text/css', href='/stylesheets/poshytip.css')
+  link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-ui-1.8.20.custom.css')
+  script(type='text/javascript', src='/javascripts/jquery-1.7.2.min.js')
+  script(type='text/javascript', src='/javascripts/jquery-ui-1.8.20.custom.min.js')
+  script(type='text/javascript', src='/javascripts/jquery.poshytip.min.js')
+  script(type='text/javascript', src='/javascripts/fullcalendar2.js')
+  script(type='text/javascript', src='/javascripts/manage-reservation.js')
+    
+append body
+  input#lab_id(type='hidden', name='lab_id', value=lab_id)
+  #title
+    h3 Lab ID: #{lab_id}
+  #calendar 
+  #event_edit_container(style="display:none")
+    form(class="event-form")
+      input(type='hidden')
+      ul
+        li
+          label Date: 
+          span(class="date_holder")
+        
+        li
+          label(for="lab", class="event-info") Lab Id
+          span(name="lab")
+
+        li
+          label(for="start") From
+          select(name="start", class="event-info")
+            option(value="") Select Start Time
+
+          label(for="end") to
+          select(name="end", class="event-info")
+            option(value="") Select End Time
+
+        li
+          label(for="uss", class="event-info") USS
+          select(name="uss", class="event-info")
+            option(value="USS1") USS 1
+            option(value="USS2") USS 2
+            option(value="USS3") USS 3
+
+        li
+          label(for="group", class="event-info") Group 
+          select(name="group", class="event-info")
+            option(value="G001") Group 1
+            option(value="G002") Group 2
+            option(value="G003") Group 3
+
+        li
+          label(for="user", class="event-info") Group 
+          select(name="user", class="event-info")
+            option(value="S0001") Student 1
+            option(value="S0002") Student 2
+            option(value="S0003") Student 3
+
+        li
+          label(for="comment", class="event-info") Comment
+          br 
+          textarea(name="comment", style="width: 300px; height: 60px")
+           
+    
+  #overlay(class="overlay", style="display: none")
+    #box(class="box", style="display: none; text-align: center") 
+      img(src="/images/loading.gif")
+      span(style="color: #000000; font-family: Arial; font-weight: bold") Loading ...
+
+        
+          
+      
+        
+

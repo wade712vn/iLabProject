@@ -1,0 +1,90 @@
+extends layout
+
+append head
+  title= title
+  link(rel='stylesheet', type='text/css', href='/stylesheets/fullcalendar.css')
+  link(rel='stylesheet', type='text/css', href='/stylesheets/poshytip.css')
+  link(rel='stylesheet', type='text/css', href='/stylesheets/jquery.miniColors.css')
+  link(rel='stylesheet', type='text/css', href='/stylesheets/jquery-ui-1.8.20.custom.css')
+  script(type='text/javascript', src='/javascripts/jquery-1.7.2.min.js')
+  script(type='text/javascript', src='/javascripts/jquery-ui-1.8.20.custom.min.js')
+  script(type='text/javascript', src='/javascripts/jquery.miniColors.min.js')
+  script(type='text/javascript', src='/javascripts/jquery.poshytip.min.js')
+  script(type='text/javascript', src='/javascripts/fullcalendar.js')
+  script(type='text/javascript', src='/javascripts/manage-timeblock.js')
+    
+append body
+  h3 Lab ID: #{lab_id}
+  input#lab_id(type='hidden', name='lab_id', value=lab_id)
+  #calendar 
+  #event_edit_container(style="display:none")
+    form(class="event-form")
+      input(type='hidden')
+      ul
+        li
+          label Date: 
+          span(class="date_holder")
+        
+        li
+          label(for="lab", class="event-info") Lab Id
+          span(name="lab")
+
+        li
+          label(for="start") From
+          select(name="start", class="event-info")
+            option(value="") Select Start Time
+
+          label(for="end") to
+          select(name="end", class="event-info")
+            option(value="") Select End Time
+
+        li
+          label(for="uss", class="event-info") USS
+          select#uss(name="uss", class="event-info")
+
+        li#group
+          label(for="group", class="event-info") Group 
+          
+
+        li
+          label(for="comment", class="event-info") Comment
+          br 
+          textarea(name="comment", style="width: 300px; height: 60px")
+
+        li
+          label Repeat
+          select#recurrence(name="recurrence", class="event-info")
+            option(value="") Once
+            option(value="DAILY") Daily
+            option(value="WEEKLY") Weekly
+            option(value="MONTHLY") Monthly
+
+          span#end_recurrence(style="display: none")
+            span
+              span until  
+              input#recurrence_end(name="recurrence_end", class="event-info recurrence_end", style="width: 100px")
+           
+    
+  #overlay(class="overlay", style="display: none")
+    #box(class="box", style="display: none; text-align: center") 
+      img(src="/images/loading.gif")
+      span(style="color: #000000; font-family: Arial; font-weight: bold") Loading ...
+
+  input#btnColors(type="button", value="Set colors")
+      
+  #groups(style="position: absolute; bottom: 75px; left: 10px; width: 120px; height: 150px; z-index: 20; background: #FFFFFF; border: 1px solid #CCCCCC; padding: 15px; display: none")
+    
+      p() G001
+        input(type="text", class="color", group="G001")
+      p() G002
+        input(type="text", class="color", group="G002")
+      p() G003
+        input(type="text", class="color", group="G003")
+
+    p 
+      input#closeColors(type="button", value="Close", style="float: right")
+        
+          
+      
+        
+

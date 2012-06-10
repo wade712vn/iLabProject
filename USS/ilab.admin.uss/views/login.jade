@@ -1,0 +1,42 @@
+!!!
+html
+  head
+    link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/poshytip.css')
+    script(type='text/javascript', src='/javascripts/jquery-1.7.2.min.js')
+    script(type='text/javascript', src='/javascripts/jquery.poshytip.min.js')
+    style
+      label {
+        display: inline-block;
+        width: 80px;
+        padding: 3px;
+      }  
+      input[type=text] {
+        margin-right: 10px;
+        width: 140px;
+      }
+
+      h1 {
+        font-family: Georgia, "Times New Roman", Times, serif;
+        font-size: 24px;
+        margin-bottom: 10px;
+        font-weight: normal;
+        color: #222;
+      }
+  body
+    h1 iLab Login
+    form(name="login", action="/login", method="POST") 
+      input(type="hidden", name="redirect_url", value=redirect_url)
+      label Group ID:
+      input(type="text", name="group_id")
+      
+      label Password:
+      input(type="password", name="password")
+    
+      input(type="submit", name="submit", value="Login")
+
+        
+          
+      
+        
+

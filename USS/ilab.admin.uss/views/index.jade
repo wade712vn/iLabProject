@@ -1,0 +1,27 @@
+extends layout
+
+append head
+  script(type='text/javascript', src='/javascripts/jquery-1.7.2.min.js')
+  script(type='text/javascript', src='/javascripts/jquery-ui-1.8.20.custom.min.js')
+  script 
+    $(document).ready(function() {
+      
+    });
+
+append content
+  div#labs
+    ul(style="width: 550px")
+      li(class="header")
+        span(class="title") Lab name   
+        span(class="id") Lab ID
+      
+      - each lab in listLabs
+        li(class="lab")
+          span(class="title") #{lab.title}
+          span(class="id") #{lab.lab_id}
+          span() 
+            - var href = "/admin/" + lab.lab_id
+            a(href=href) Reservations
+          span() 
+            - var href = "/manage-rules/" + lab.lab_id
+            a(href=href) Policy

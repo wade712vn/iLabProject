@@ -1,0 +1,54 @@
+extends layout
+ 
+append head  
+  link(rel='stylesheet', type='text/css', href='/stylesheets/poshytip.css')
+
+  script(type='text/javascript', src='/javascripts/jquery-1.7.2.min.js')
+  script(type='text/javascript', src='/javascripts/jquery-ui-1.8.20.custom.min.js')
+  script(type='text/javascript', src='/javascripts/jquery.poshytip.min.js')
+  script(type='text/javascript', src='/javascripts/manage-rules.js')
+  
+append content
+  input(type="hidden", id="lab_id", value=lab_id)
+  input(type="hidden", id="group_id", value=group.group_id)
+  input(type="hidden", id="broker_url", value=group.broker_url)
+  div#labs
+    p Time blocks for lab 
+      strong #{lab_id}
+
+    ul(style="width: 800px")
+      li(class="header")
+        span(class="id") Id
+        span(class="uss") Type
+        span(class="uss") From
+        span(class="uss") Until
+        span(class="uss") Times   
+
+      - each timeblock in timeblocks
+          li(class="block", style="padding: 0")
+            input(type="hidden", class="timeblock_id", value=timeblock.timeblock_id)
+            div(class="block", style="padding: 5px")
+              span(class="id") #{timeblock.timeblock_id}
+              span(class="uss") #{timeblock.recurrence.FREQ}
+              span(class="uss") #{timeblock.start_date}
+              span(class="uss") #{timeblock.recurrence.UNTIL}
+              span(class="uss") #{timeblock.start_time} - #{timeblock.end_time}
+              span() 
+                a(href="#", class="view_policy") View policy
+            
+            div(class="rule", style="display: none; height: 40x; border-width: 1px 0 1px 0; border; border-color: #000000; border-style: solid; padding: 5px")
+              input(type="hidden", class="rule-id")
+              p Minimum duration:
+                input(type="text", class="min-duration")
+              p Maximum duration:
+                input(type="text", class="max-duration")
+              p Maximum daily reservations:
+                input(type="text", class="max-daily")
+              p Maximum weekly reservations:
+                input(type="text", class="max-weekly")
+              p Maximum monthly reservations:
+                input(type="text", class="max-monthly") 
+
+              input(type="button", class="saveRule", value="Save")
+
+

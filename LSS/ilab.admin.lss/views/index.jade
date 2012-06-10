@@ -1,0 +1,19 @@
+extends layout
+  
+append body
+  #labs
+    ul(style="width: 550px")
+      li(class="header")
+        span(class="title") Lab name   
+        span(class="id") Lab ID
+      - each lab in labs
+        if (lab.title !== "Primary")
+          li(class="lab")
+            span(class="title") #{lab.title}
+            span(class="id") #{lab.lab_id}
+            span() 
+              - var href = "/manage-timeblock/" + lab.lab_id
+              a(href=href) Timeblocks
+            span() 
+              - var href = "/manage-reservation/" + lab.lab_id
+              a(href=href) Reservations
